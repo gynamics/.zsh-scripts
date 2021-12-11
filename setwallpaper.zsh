@@ -162,6 +162,7 @@ function set-wallpaper {
     if [ $2 -gt 0 ]&&[ $2 -le $(wc -l $MY_BGLIST_PATH|awk '{print $1}') ]
     then
       awk '{ sub(/set \$wallpaper .*$/, "set \$wallpaper \"'$(sed -n $2'p' $MY_BGLIST_PATH)'\""); print >"tmp-out" }' $WM_CONFIG_PATH 2>/dev/null && mv tmp-out $WM_CONFIG_PATH
+      shift 2
     else
       echo "-sn needs a valid line number"
       return
